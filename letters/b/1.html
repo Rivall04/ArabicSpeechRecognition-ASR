@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=ABeeZee&display=swap" rel="stylesheet" />
+
+  <title>حرف الالف بالضمة </title>
+  <link rel="canonical" href="https://markjivko.com/tutorials/B3wWIsNHPk4/">
+  <meta charset="UTF-8">
+  <meta name="Author" content="Mark Jivko">
+  <meta name="Keywords" content="js,audio recorder">
+  <meta name="Description" content="Recording audio with HTML 5 and JavaScript">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="initial-scale=1.0, width=device-width">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="icon" type="image/ico" href="https://markjivko.com/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="../../css/css.css">
+
+  <style type="text/css">
+    .v26_156 {
+      width: 100%;
+      height: 100%;
+      background: url("../../image/background.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      opacity: 1;
+      position: relative;
+      top: 0px;
+      left: 0px;
+      overflow: hidden;
+    }
+
+    .v29_191 {
+      width: 110px;
+      height: 107px;
+      background: url("../../image/navigatebutton.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      opacity: 1;
+      position: absolute;
+      top: 51px;
+      left: 40px;
+      overflow: hidden;
+    }
+
+    .Recognition {
+      color: rgb(255, 255, 255);
+      background-color: rgb(175, 0, 0);
+      font-style: italic;
+      font-family: ABeeZee;
+      font-weight: Italic;
+      font-size: medium;
+      opacity: 1;
+      position: absolute;
+      padding: 20px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .Recognition:hover {
+      color: red;
+      /*يغير اللون اذا جاء عليه المؤشر*/
+
+    }
+  </style>
+  <script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
+  <script src="https://markjivko.com/dist/recorder.js"></script>
+  <script>
+    function sendAudio() {
+      var fileInput = document.getElementById('audio');
+      var file = fileInput.files[0];
+      var formData = new FormData();
+      formData.append('file', file);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'http://localhost:5000/SpeechRecognize', true);
+
+      xhr.onload = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+
+          var textResponse = xhr.responseText;
+          console.log(textResponse);
+
+          if (textResponse === 'a1') {
+            var audioPlayer = document.getElementById('audioPlayer');
+            audioPlayer.src = URL.createObjectURL(file);
+          }
+          if(textResponse =='7a1'){
+          alert('أحسنـــــــــت')
+        }
+        else{
+          alert("حاول مرة أخرى ")
+        }
+        }
+      }
+
+      xhr.send(formData);
+    }
+  </script>
+
+</head>
+
+<body>
+  <div class="v26_141">
+
+    <div class="v26_151"></div>
+    <div class="v26_156">
+
+
+    </div>
+    <div class="v26_157"></div><span class="v26_161">بَ</span>
+    <div class="v26_185">
+
+
+      <input type="file" id="audio" accept="audio/*">
+      <br><br>
+
+      <button class="Recognition" onclick="sendAudio();">عرض النتيجة</button>
+
+      <br><br><br><br>
+
+    </div>
+
+    <div id="login_imag"> <img src="../../image/pencil.png" /> </div>
+
+
+  </div> <a href="../../dicritcs/dicritcs2.html">
+    <div class="v29_191"></div>
+  </a>
+</body>
+
+</html>
