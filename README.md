@@ -1,0 +1,3 @@
+# ArabicSpeechRecognition-ASR
+Speech Recognition System using TF model with Flask API 
+It's a free source everyone can try it... 
